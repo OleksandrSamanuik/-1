@@ -16,65 +16,29 @@
     </nav>
   </header>
 
-  <main>
-    <div id="menu-container">
-      <div class="food">
-        <h3>Піцца Маргарита</h3>
-        <p>Ціна: 120 грн</p>
-        <button onclick="addToCart('Піцца Маргарита', 120)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Піцца Пепероні</h3>
-        <p>Ціна: 135 грн</p>
-        <button onclick="addToCart('Піцца Пепероні', 135)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Суші Філадельфія</h3>
-        <p>Ціна: 160 грн</p>
-        <button onclick="addToCart('Суші Філадельфія', 160)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Бургер Класичний</h3>
-        <p>Ціна: 110 грн</p>
-        <button onclick="addToCart('Бургер Класичний', 110)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Бургер з беконом</h3>
-        <p>Ціна: 125 грн</p>
-        <button onclick="addToCart('Бургер з беконом', 125)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Картопля фрі</h3>
-        <p>Ціна: 50 грн</p>
-        <button onclick="addToCart('Картопля фрі', 50)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Салат Цезар</h3>
-        <p>Ціна: 95 грн</p>
-        <button onclick="addToCart('Салат Цезар', 95)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Суп Том Ям</h3>
-        <p>Ціна: 140 грн</p>
-        <button onclick="addToCart('Суп Том Ям', 140)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Паста Карбонара</h3>
-        <p>Ціна: 130 грн</p>
-        <button onclick="addToCart('Паста Карбонара', 130)">Додати в кошик</button>
-      </div>
-      <div class="food">
-        <h3>Лимонад</h3>
-        <p>Ціна: 40 грн</p>
-        <button onclick="addToCart('Лимонад', 40)">Додати в кошик</button>
-      </div>
-    </div>
-
-    <h2>🛒 Кошик</h2>
+  <div class="cart-box" id="cart-box">
+    <h3>🛒 Кошик</h3>
     <ul id="cart"></ul>
     <p><strong>Сума:</strong> <span id="total">0</span> грн</p>
+  </div>
+
+  <main>
+    <div id="menu-container">
+      <!-- 10 страв -->
+      <div class="food"><h3>Піцца Маргарита</h3><p>120 грн</p><button onclick="addToCart('Піцца Маргарита', 120)">Додати</button></div>
+      <div class="food"><h3>Піцца Пепероні</h3><p>135 грн</p><button onclick="addToCart('Піцца Пепероні', 135)">Додати</button></div>
+      <div class="food"><h3>Суші Філадельфія</h3><p>160 грн</p><button onclick="addToCart('Суші Філадельфія', 160)">Додати</button></div>
+      <div class="food"><h3>Бургер Класичний</h3><p>110 грн</p><button onclick="addToCart('Бургер Класичний', 110)">Додати</button></div>
+      <div class="food"><h3>Бургер з беконом</h3><p>125 грн</p><button onclick="addToCart('Бургер з беконом', 125)">Додати</button></div>
+      <div class="food"><h3>Картопля фрі</h3><p>50 грн</p><button onclick="addToCart('Картопля фрі', 50)">Додати</button></div>
+      <div class="food"><h3>Салат Цезар</h3><p>95 грн</p><button onclick="addToCart('Салат Цезар', 95)">Додати</button></div>
+      <div class="food"><h3>Суп Том Ям</h3><p>140 грн</p><button onclick="addToCart('Суп Том Ям', 140)">Додати</button></div>
+      <div class="food"><h3>Паста Карбонара</h3><p>130 грн</p><button onclick="addToCart('Паста Карбонара', 130)">Додати</button></div>
+      <div class="food"><h3>Лимонад</h3><p>40 грн</p><button onclick="addToCart('Лимонад', 40)">Додати</button></div>
+    </div>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
