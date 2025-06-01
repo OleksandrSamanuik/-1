@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Кошик | Доставка їжі</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Кошик</h1>
+    <nav>
+      <a href="index.html">Головна</a>
+      <a href="menu.html">Меню</a>
+      <a href="offers.html">Акції</a>
+      <a href="about.html">Про нас</a>
+      <a href="cart.html">Кошик</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Ваше замовлення:</h2>
+    <ul id="cart"></ul>
+    <p><strong>Сума:</strong> <span id="total">0</span> грн</p>
+  </main>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartList = document.getElementById("cart");
+    const totalElement = document.getElementById("total");
+
+    let total = 0;
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} — ${item.price} грн`;
+      cartList.appendChild(li);
+      total += item.price;
+    });
+    totalElement.textContent = total;
+  </script>
+</body>
+</html>
