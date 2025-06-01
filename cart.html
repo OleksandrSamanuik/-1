@@ -23,19 +23,10 @@
     <p><strong>Сума:</strong> <span id="total">0</span> грн</p>
   </main>
 
+  <!-- Підключення зовнішнього скрипта -->
+  <script src="cript.js"></script>
   <script>
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartList = document.getElementById("cart");
-    const totalElement = document.getElementById("total");
-
-    let total = 0;
-    cart.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = `${item.name} — ${item.price} грн`;
-      cartList.appendChild(li);
-      total += item.price;
-    });
-    totalElement.textContent = total;
+    document.addEventListener("DOMContentLoaded", renderCart);
   </script>
 </body>
 </html>
