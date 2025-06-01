@@ -1,10 +1,11 @@
-const cart = [];
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
 const cartList = document.getElementById("cart");
 const totalElement = document.getElementById("total");
 
 function addToCart(name, price) {
   cart.push({ name, price });
-  renderCart();
+  localStorage.setItem("cart", JSON.stringify(cart));
+  if (cartList && totalElement) renderCart();
 }
 
 function renderCart() {
