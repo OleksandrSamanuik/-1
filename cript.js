@@ -1,5 +1,5 @@
 const cart = [];
-const cartElement = document.getElementById("cart");
+const cartList = document.getElementById("cart");
 const totalElement = document.getElementById("total");
 
 function addToCart(name, price) {
@@ -8,14 +8,13 @@ function addToCart(name, price) {
 }
 
 function renderCart() {
-  cartElement.innerHTML = "";
+  cartList.innerHTML = "";
   let total = 0;
   cart.forEach(item => {
     const li = document.createElement("li");
     li.textContent = `${item.name} — ${item.price} грн`;
-    cartElement.appendChild(li);
+    cartList.appendChild(li);
     total += item.price;
   });
   totalElement.textContent = total;
 }
-
