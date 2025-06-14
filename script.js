@@ -39,7 +39,7 @@ function removeFromCart(index) {
 
 function toggleCart() {
   const box = document.getElementById("cart-box");
-  box.classList.toggle("open");
+  box.style.display = box.style.display === "none" ? "block" : "none";
 }
 
 
