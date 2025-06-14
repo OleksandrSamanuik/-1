@@ -1,71 +1,23 @@
-const cartList = document.getElementById("cart");
-const totalElement = document.getElementById("total");
-
-// Функція додавання товару в кошик
 function addToCart(name, price) {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  // Шукаємо товар у кошику
-  const existingItem = cart.find(item => item.name === name);
-
-  if (existingItem) {
-    // Якщо є — збільшуємо кількість
-    existingItem.quantity += 1;
-  } else {
-    // Якщо нема — додаємо новий
-    cart.push({ name, price, quantity: 1 });
-  }
-
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price });
   localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
+  alert(`${name} додано в кошик!`);
 }
 
-// Функція відображення кошика
 function renderCart() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartList = document.getElementById("cart");
+  const total = document.getElementById("total");
   cartList.innerHTML = "";
+  let sum = 0;
 
-  let total = 0;
-
-  cart.forEach((item, index) => {
+  cart.forEach(item => {
     const li = document.createElement("li");
-    li.textContent = `${item.name} — ${item.price} грн × ${item.quantity}`;
-
-    // Кнопка для зменшення кількості
-    const btnDecrease = document.createElement("button");
-    btnDecrease.textContent = "-";
-    btnDecrease.style.marginLeft = "10px";
-    btnDecrease.onclick = () => {
-      if (item.quantity > 1) {
-        item.quantity -= 1;
-      } else {
-        // Якщо кількість 1, видаляємо товар з кошика
-        cart.splice(index, 1);
-      }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    };
-
-    // Кнопка для повного видалення товару
-    const btnRemove = document.createElement("button");
-    btnRemove.textContent = "×";
-    btnRemove.style.marginLeft = "5px";
-    btnRemove.onclick = () => {
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
-    };
-
-    li.appendChild(btnDecrease);
-    li.appendChild(btnRemove);
-
+    li.textContent = `${item.name} - ${item.price} грн`;
     cartList.appendChild(li);
-
-    total += item.price * item.quantity;
+    sum += parseFloat(item.price);
   });
 
-  totalElement.textContent = total.toFixed(2) + " грн";
+  total.textContent = sum.toFixed(2);
 }
-
-// Викликаємо рендер при завантаженні сторінки
-document.addEventListener("DOMContentLoaded", renderCart);
