@@ -39,8 +39,9 @@ function removeFromCart(index) {
 
 function toggleCart() {
   const box = document.getElementById("cart-box");
-  box.style.display = box.style.display === "none" ? "block" : "none";
+  box.classList.toggle("open");
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   renderCart();
