@@ -4,19 +4,129 @@
   <meta charset="UTF-8">
   <title>Про нас | Доставка їжі</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #f08a00;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffe0b3;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #f08a00;
+      margin-bottom: 30px;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+    }
+
+    .about-text p {
+      line-height: 1.6;
+      font-size: 17px;
+      margin-bottom: 15px;
+    }
+
+    .about-img {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .about-img img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: #eee;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .about-content {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>Про нас</h1>
+    <h1>👨‍🍳 Про нас</h1>
     <nav>
       <a href="index.html">Головна</a>
       <a href="menu.html">Меню</a>
       <a href="offers.html">Акції</a>
       <a href="about.html">Про нас</a>
+      <a href="cart.html">Кошик</a>
     </nav>
   </header>
+
   <main>
-    <p>Ми команда, яка вже 5 років доставляє смачну їжу по місту. Наш пріоритет — якість, швидкість і задоволені клієнти.</p>
+    <h2>Ми готуємо з любов’ю</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p><strong>Наша історія</strong> почалася з маленького сімейного кафе, яке стало улюбленим місцем для всіх, хто цінує домашній смак та тепло.</p>
+        <p>Ми перетворили любов до кулінарії в сервіс доставки їжі, щоб кожен міг насолодитись свіжими стравами вдома або в офісі.</p>
+        <p>Сьогодні ми — команда професійних кухарів, кур’єрів і адміністраторів, які щодня працюють, щоб зробити ваш день смачнішим.</p>
+      </div>
+      <div class="about-img">
+        <img src="images/1.jpg" alt="Наша команда">
+      </div>
+    </div>
   </main>
+
+  <footer>
+    &copy; 2025 Доставка їжі. Усі права захищено.
+  </footer>
+
 </body>
 </html>
