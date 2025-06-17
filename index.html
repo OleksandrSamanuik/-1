@@ -92,3 +92,89 @@
     padding: 10px 15px;
   }
 }
+
+
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .feature {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .feature h3 {
+      color: #f08a00;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: #eee;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        font-size: 22px;
+        height: 200px;
+        padding: 10px;
+      }
+
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍽️ Смачна доставка їжі</h1>
+    <nav>
+      <a href="index.html">Головна</a>
+      <a href="menu.html">Меню</a>
+      <a href="offers.html">Акції</a>
+      <a href="about.html">Про нас</a>
+      <a href="cart.html">Кошик</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero" style="background: url('images/hero-fastfood1.jpg') center/cover no-repeat;">
+    </div>
+
+    <h2>Чому обирають нас?</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>🍕 Великий вибір</h3>
+        <p>Піца, суші, бургери, салати, напої — на будь-який смак!</p>
+      </div>
+      <div class="feature">
+        <h3>🚚 Швидка доставка</h3>
+        <p>Привеземо гарячим до ваших дверей за 30 хвилин.</p>
+      </div>
+      <div class="feature">
+        <h3>💳 Зручна оплата</h3>
+        <p>Готівка, картка чи онлайн — як зручно саме вам.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Доставка їжі. Усі права захищено.
+  </footer>
+
+</body>
+</html>
+
