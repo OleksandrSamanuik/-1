@@ -1,83 +1,93 @@
+// Ключ для localStorage
+const cartKey = 'cart';
+
+// Масив товарів у кошику
+const cart = [];
+
+// Завантаження кошика з localStorage
+function loadCart() {
+  const saved = localStorage.getItem(cartKey);
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    cart.length = 0;
+    parsed.forEach(item => cart.push(item));
+  }
+}
+
+// Збереження кошика у localStorage
+function saveCart() {
+  localStorage.setItem(cartKey, JSON.stringify(cart));
+}
+
+// Додавання товару у кошик
 function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const item = cart.find(i => i.name === name);
-  if (item) {
-    item.quantity += 1;
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.quantity++;
   } else {
     cart.push({ name, price, quantity: 1 });
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   renderCart();
+  
 }
 
-function renderCart() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartList = document.getElementById("cart");
-  const totalElement = document.getElementById("total");
-  if (!cartList || !totalElement) return;
+// Видалення товару з кошика
+function removeFromCart(name) {
+  const index = cart.findIndex(item => item.name === name);
+  if (index !== -1) {
+    if (cart[index].quantity > 1) {
+      cart[index].quantity--;
+    } else {
+      cart.splice(index, 1);
+    }
+    saveCart();
+    renderCart();
+  }
+}
 
-  cartList.innerHTML = "";
+// Відображення кошика
+function renderCart() {
+  const cartList = document.getElementById('cart');
+  const totalEl = document.getElementById('total');
+
+  if (!cartList || !totalEl) return;
+
+  cartList.innerHTML = '';
   let total = 0;
 
-  cart.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `${item.name} — ${item.price} грн × ${item.quantity}
-      <button onclick="removeFromCart(${index})">❌</button>`;
-    cartList.appendChild(li);
+  cart.forEach(item => {
     total += item.price * item.quantity;
+    const li = document.createElement('li');
+    li.textContent = `${item.name} — ${item.price} грн × ${item.quantity}`;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = '✖';
+    removeBtn.style.marginLeft = '10px';
+    removeBtn.style.cursor = 'pointer';
+    removeBtn.onclick = () => removeFromCart(item.name);
+
+    li.appendChild(removeBtn);
+    cartList.appendChild(li);
   });
 
-  totalElement.textContent = total;
+  totalEl.textContent = total.toFixed(2);
 }
 
-function removeFromCart(index) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
-
+// Показ або приховування кошика
 function toggleCart() {
-  const box = document.getElementById("cart-box");
-  box.style.display = box.style.display === "none" ? "block" : "none";
+  const cartBox = document.getElementById('cart-box');
+  if (cartBox) {
+    cartBox.style.display = cartBox.style.display === 'block' ? 'none' : 'block';
+  }
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
+// Завантаження кошика при завантаженні сторінки
+window.onload = () => {
+  loadCart();
   renderCart();
 
-  const form = document.getElementById("order-form");
-  const addressField = document.getElementById("address-field");
-  const addressInput = document.getElementById("address");
-  const result = document.getElementById("order-result");
+  const cartBox = document.getElementById('cart-box');
+  if (cartBox) cartBox.style.display = 'none';
+};
 
-  document.querySelectorAll('input[name="deliveryType"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-      if (radio.value === "pickup" && radio.checked) {
-        addressField.style.display = "none";
-        addressInput.required = false;
-      } else {
-        addressField.style.display = "block";
-        addressInput.required = true;
-      }
-    });
-  });
-
-  if (form) {
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      if (cart.length === 0) return alert("Кошик порожній!");
-
-      const type = document.querySelector('input[name="deliveryType"]:checked').value;
-      const address = addressInput.value;
-      let message = `Замовлення: ${cart.map(i => `${i.name} x${i.quantity}`).join(", ")}`;
-      message += `\nТип: ${type === "pickup" ? "Самовивіз" : "Доставка"}`;
-      if (type === "delivery") message += `\nАдреса: ${address}`;
-      result.textContent = "✅ Замовлення прийнято!";
-      console.log(message);
-      localStorage.removeItem("cart");
-      renderCart();
-    });
-  }
-});
