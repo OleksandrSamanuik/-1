@@ -4,22 +4,136 @@
   <meta charset="UTF-8">
   <title>Акції | Доставка їжі</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #f08a00;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffe0b3;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f08a00;
+    }
+
+    .offers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .offer-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .offer-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .offer-card h3 {
+      color: #f08a00;
+      margin-bottom: 10px;
+    }
+
+    .offer-card p {
+      font-size: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: #eee;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>Акції та знижки</h1>
+    <h1>🎉 Акції та знижки</h1>
     <nav>
       <a href="index.html">Головна</a>
       <a href="menu.html">Меню</a>
       <a href="offers.html">Акції</a>
       <a href="about.html">Про нас</a>
+      <a href="cart.html">Кошик</a>
     </nav>
   </header>
+
   <main>
-    <ul>
-      <li>🔥 2 піци – третя у подарунок</li>
-      <li>🎉 Знижка 20% на перше замовлення</li>
-    </ul>
+    <h2>Смакуй вигідно!</h2>
+    <div class="offers">
+      <div class="offer-card">
+        <img src="images/offer1.jpg" alt="Знижка на піцу">
+        <h3>2 піци за ціною 1</h3>
+        <p>Замов дві будь-які піци — друга в подарунок! Лише до кінця тижня.</p>
+      </div>
+      <div class="offer-card">
+        <img src="images/offer2.jpg" alt="Безкоштовна доставка">
+        <h3>Безкоштовна доставка</h3>
+        <p>Отримай доставку безкоштовно при замовленні від 300 грн.</p>
+      </div>
+      <div class="offer-card">
+        <img src="images/offer3.jpg" alt="Знижка на суші">
+        <h3>-20% на суші-сети</h3>
+        <p>Улюблені роли дешевше! Знижка діє до 15 червня.</p>
+      </div>
+    </div>
   </main>
+
+  <footer>
+    &copy; 2025 Доставка їжі. Усі права захищено.
+  </footer>
+
 </body>
 </html>
