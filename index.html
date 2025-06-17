@@ -2,22 +2,93 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Доставка їжі | Головна</title>
+  <title>Головна | Доставка їжі</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Сервіс доставки їжі</h1>
-    <nav>
-      <a href="index.html">Головна</a>
-      <a href="menu.html">Меню</a>
-      <a href="offers.html">Акції</a>
-      <a href="about.html">Про нас</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Ласкаво просимо!</h2>
-    <p>Замовляй улюблену їжу онлайн – швидко, зручно, смачно!</p>
-  </main>
-</body>
-</html>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #f08a00;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffe0b3;
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero {
+      background: url('images/hero-fastfood.jpg') center/cover no-repeat;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(0, 0, 0);
+      font-size: 32px;
+      font-weight: bold;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .hero {
+  background: url('images/hero-fastfood1.jpg') center center / contain no-repeat;
+  background-color: #f0f0f0; /* колір для заповнення пустих місць */
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  position: relative;
+  text-align: center;
+}
+
+.hero-text {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 200px;
+  }
+
+  .hero-text {
+    font-size: 20px;
+    padding: 10px 15px;
+  }
+}
