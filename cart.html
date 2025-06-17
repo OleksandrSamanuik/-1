@@ -4,34 +4,291 @@
   <meta charset="UTF-8">
   <title>Кошик | Доставка їжі</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #f08a00;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffe0b3;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #f08a00;
+    }
+
+    ul#cart {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul#cart li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #fff3e0;
+      border-radius: 8px;
+    }
+
+    .item-info {
+      flex-grow: 1;
+    }
+
+    .remove-btn {
+      background: #ff5e5e;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .total {
+      font-size: 18px;
+      text-align: right;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .order-options {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .order-options button {
+      margin: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #f08a00;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #delivery-form {
+      display: none;
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+
+    #delivery-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    #delivery-form button {
+      background-color: #28a745;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: #eee;
+    }
+
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+  emailjs.init("XSJmotHC2CFgkJumD");
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_food', 'template_order', this)
+      .then(() => alert('Повідомлення надіслано!'))
+      .catch(error => alert("Помилка: " + JSON.stringify(error)));
+  });
+</script>
+
 </head>
 <body>
-  <header>
-    <h1>Кошик</h1>
-    <nav>
-      <a href="index.html">Головна</a>
-      <a href="menu.html">Меню</a>
-      <a href="offers.html">Акції</a>
-      <a href="about.html">Про нас</a>
-      <a href="cart.html">Кошик</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Ваше замовлення:</h2>
-    <ul id="cart"></ul>
-    <p><strong>Сума:</strong> <span id="total">0</span> грн</p>
-  </main>
+<header>
+  <h1>🛒 Ваш кошик</h1>
+  <nav>
+    <a href="index.html">Головна</a>
+    <a href="menu.html">Меню</a>
+    <a href="offers.html">Акції</a>
+    <a href="about.html">Про нас</a>
+    <a href="cart.html">Кошик</a>
+  </nav>
+</header>
 
-  <!-- Підключення зовнішнього скрипта -->
-  <script src="script.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", renderCart);
-  </script>
-  <br><br>
-<a href="order.html">
-    <button style="padding: 10px 20px; font-size: 16px;">Перейти до замовлення</button>
-</a>
+<main>
+  <h2>Ваше замовлення:</h2>
+  <ul id="cart"></ul>
+  <p class="total">Сума: <span id="total">0</span> грн</p>
+
+  <div class="order-options">
+    <h3>Оберіть спосіб отримання:</h3>
+    <button onclick="showDeliveryForm()">🚚 Доставка</button>
+    <button onclick="placeOrder('самовивіз')">🏃 Самовивіз</button>
+  </div>
+
+  <div id="delivery-form">
+    <h3>Дані для доставки</h3>
+    <input type="text" id="name" placeholder="Ваше ім’я" required>
+    <input type="text" id="phone" placeholder="Телефон" required>
+    <input type="text" id="address" placeholder="Адреса доставки" required>
+    <button onclick="submitDelivery()">Підтвердити замовлення</button>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Доставка їжі. Усі права захищено.
+</footer>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartList = document.getElementById("cart");
+  const totalElement = document.getElementById("total");
+
+  // Функція оновлення вмісту кошика
+  function renderCart() {
+    cartList.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const li = document.createElement("li");
+
+      // Якщо хочеш враховувати кількість товарів — додавай quantity:
+      // Якщо кількість відсутня, вважай 1
+      const quantity = item.quantity ? item.quantity : 1;
+
+      li.textContent = `${item.name} — ${item.price} грн × ${quantity}`;
+
+      const removeBtn = document.createElement("button");
+      removeBtn.className = "remove-btn";
+      removeBtn.textContent = "✖";
+      removeBtn.style.marginLeft = "10px";
+      removeBtn.onclick = () => removeItem(index);
+
+      li.appendChild(removeBtn);
+      cartList.appendChild(li);
+
+      total += item.price * quantity;
+    });
+
+    totalElement.textContent = total;
+  }
+
+  // Видалити товар з кошика
+  function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  // Показати форму доставки
+  function showDeliveryForm() {
+    if (cart.length === 0) {
+      alert("Ваш кошик порожній!");
+      return;
+    }
+    const form = document.getElementById("delivery-form");
+    if (form) {
+      form.style.display = "block";
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }
+
+  // Обробка відправки форми доставки
+  function submitDelivery() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+
+  if (!name || !phone || !address) {
+    alert("Будь ласка, заповніть усі поля!");
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+  const cartItems = cart.map(item => `${item.name} — ${item.price} грн × ${item.quantity || 1}`).join('\n');
+
+  emailjs.send("service_food", "template_order", {
+    name: name,
+    phone: phone,
+    address: address,
+    cart: cartItems,
+    total: total
+  }).then(() => {
+    alert("Замовлення надіслано! Дякуємо!");
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    document.getElementById("delivery-form").style.display = "none";
+  }, (error) => {
+    alert("Помилка надсилання: " + JSON.stringify(error));
+  });
+}
+
+
+  // Обробка замовлення без доставки (наприклад, самовивіз)
+  function placeOrder(type) {
+    if (cart.length === 0) {
+      alert("Ваш кошик порожній!");
+      return;
+    }
+
+    const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+    alert(`Ваше замовлення (${type}): ${cart.length} товарів на суму ${total} грн. Дякуємо!`);
+    
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  // Відразу показати вміст кошика при завантаженні сторінки
+  renderCart();
+</script>
+
 
 </body>
 </html>
