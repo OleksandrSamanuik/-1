@@ -91,3 +91,15 @@ window.onload = () => {
   if (cartBox) cartBox.style.display = 'none';
 };
 
+
+  function filterMenu() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const foodItems = document.querySelectorAll('#menu-container .food');
+
+    foodItems.forEach(item => {
+      const title = item.querySelector('h3').textContent.toLowerCase();
+      item.style.display = title.includes(filter) ? '' : 'none';
+    });
+  }
+
