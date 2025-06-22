@@ -150,8 +150,12 @@
   </div>
 
    <main>
-    <h2>Наші страви</h2>
-    <div id="menu-container">
+  <h2>Наші страви</h2>
+
+  <input type="text" id="searchInput" placeholder="Пошук страви..." oninput="filterMenu()" style="padding: 10px; width: 80%; max-width: 400px; margin-bottom: 30px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px;">
+
+  <div id="menu-container">
+
       <div class="food">
         <img src="images/margarita.jpg" alt="Піцца Маргарита">
         <h3>Піцца Маргарита</h3>
@@ -221,14 +225,159 @@
         <p>125 грн</p>
         <button onclick="addToCart('Бургер з беконом', 125)">Додати</button>
       </div>
+      <div class="food">
+  <img src="images/vegan_pizza.jpg" alt="Піцца Веганська">
+  <h3>Піцца Веганська</h3>
+  <p>115 грн</p>
+  <button onclick="addToCart('Піцца Веганська', 115)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/hawaiian_pizza.jpg" alt="Піцца Гавайська">
+  <h3>Піцца Гавайська</h3>
+  <p>125 грн</p>
+  <button onclick="addToCart('Піцца Гавайська', 125)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/rolls.jpg" alt="Сет ролів">
+  <h3>Сет ролів</h3>
+  <p>210 грн</p>
+  <button onclick="addToCart('Сет ролів', 210)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/chicken_nuggets.jpg" alt="Нагетси курячі">
+  <h3>Нагетси курячі</h3>
+  <p>75 грн</p>
+  <button onclick="addToCart('Нагетси курячі', 75)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/hotdog.jpg" alt="Хот-дог">
+  <h3>Хот-дог</h3>
+  <p>60 грн</p>
+  <button onclick="addToCart('Хот-дог', 60)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/borscht.jpg" alt="Борщ український">
+  <h3>Борщ український</h3>
+  <p>70 грн</p>
+  <button onclick="addToCart('Борщ український', 70)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/pancakes.jpg" alt="Млинці з сиром">
+  <h3>Млинці з сиром</h3>
+  <p>55 грн</p>
+  <button onclick="addToCart('Млинці з сиром', 55)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/vareniki.jpg" alt="Вареники з картоплею">
+  <h3>Вареники з картоплею</h3>
+  <p>80 грн</p>
+  <button onclick="addToCart('Вареники з картоплею', 80)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/schnitzel.jpg" alt="Шніцель курячий">
+  <h3>Шніцель курячий</h3>
+  <p>125 грн</p>
+  <button onclick="addToCart('Шніцель курячий', 125)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/greek_salad.jpg" alt="Салат Грецький">
+  <h3>Салат Грецький</h3>
+  <p>90 грн</p>
+  <button onclick="addToCart('Салат Грецький', 90)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/chicken_wrap.jpg" alt="Чікен-рол">
+  <h3>Чікен-рол</h3>
+  <p>95 грн</p>
+  <button onclick="addToCart('Чікен-рол', 95)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/pelmeni.jpg" alt="Пельмені домашні">
+  <h3>Пельмені домашні</h3>
+  <p>100 грн</p>
+  <button onclick="addToCart('Пельмені домашні', 100)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/chocolate_cake.jpg" alt="Шоколадний торт">
+  <h3>Шоколадний торт</h3>
+  <p>60 грн</p>
+  <button onclick="addToCart('Шоколадний торт', 60)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/apple_pie.jpg" alt="Яблучний пиріг">
+  <h3>Яблучний пиріг</h3>
+  <p>55 грн</p>
+  <button onclick="addToCart('Яблучний пиріг', 55)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/ice_cream.jpg" alt="Морозиво ванільне">
+  <h3>Морозиво ванільне</h3>
+  <p>45 грн</p>
+  <button onclick="addToCart('Морозиво ванільне', 45)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/cappuccino.jpg" alt="Капучино">
+  <h3>Капучино</h3>
+  <p>50 грн</p>
+  <button onclick="addToCart('Капучино', 50)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/americano.jpg" alt="Американо">
+  <h3>Американо</h3>
+  <p>45 грн</p>
+  <button onclick="addToCart('Американо', 45)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/green_tea.jpg" alt="Зелений чай">
+  <h3>Зелений чай</h3>
+  <p>40 грн</p>
+  <button onclick="addToCart('Зелений чай', 40)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/juice.jpg" alt="Сік апельсиновий">
+  <h3>Сік апельсиновий</h3>
+  <p>35 грн</p>
+  <button onclick="addToCart('Сік апельсиновий', 35)">Додати</button>
+</div>
+
+<div class="food">
+  <img src="images/mineral_water.jpg" alt="Мінеральна вода">
+  <h3>Мінеральна вода</h3>
+  <p>30 грн</p>
+  <button onclick="addToCart('Мінеральна вода', 30)">Додати</button>
+</div>
+
     </div>
   </main>
 
   <footer>
-    &copy; 2025 Доставка їжі. Смачного!
+    &copy; 2025 Доставка їжі. Усі права захищено.
+    <div style="margin-top: 10px;">
+      <strong>Контакти:</strong><br>
+      📞 <a href="tel:+380975937465" style="color: #333; text-decoration: none;">+38 (097) 593 74 65</a><br>
+      ✉️ <a href="foodchiken556@gmail.com" style="color: #333; text-decoration: none;">foodchiken556@gmail.com</a>
+    </div>
   </footer>
+
 
   <script src="script.js"></script>
 </body>
 </html>
-
